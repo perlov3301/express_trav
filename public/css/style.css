@@ -1,0 +1,19 @@
+ html {
+    width: 98%;
+    margin: 0.5rem auto 0.5rem auto;
+    border-radius: 0.5rem;
+    background-color: rgba(125,125,125,1);
+    color: yellow;
+    border: 1px rgb(72, 83, 85) solid;
+}
+body {
+    width: 96%;
+    margin: 0.5rem auto 0.5rem auto;
+    border-radius: 0.5rem;
+    background-color: rgba(125,125,125,1);
+    color: yellow;
+    border: 1px rgb(72, 83, 85) solid;
+}
+h1,h2,h3 { 
+    text-align: center; 
+}

@@ -3,6 +3,8 @@ import path from 'node:path';
 import myDir from '../../mydir.js';
 import members from '../../array_members.js';
 import crypto from 'node:crypto'; // crypto.randomUUID()
+import { v4 as myuuid , parse} from 'uuid';
+import convertInt from './convert.js';
 
 const app = express();
 const router = express.Router();
@@ -17,7 +19,8 @@ router.get(`/:id`, (req,res)=>{
     // we can use req Object to get id
     const allpar = req.params;
     const aId = allpar.id;
-    const idNumber = parseInt(req.params.id);
+    let idNumber=0;
+    idNumber = parseInt(aId); 
     console.log(`indexjs;get; parse(id): ${idNumber} of type ${typeof idNumber}`);
     // members.forEach(obj=>{ console.log(obj);});
     let mysingle = {};
@@ -33,8 +36,13 @@ router.get(`/:id`, (req,res)=>{
 }) ;// get
 // create a Member
 router.post('/', (req,res)=>{
+  let aId = crypto.randomUUID();
+  const cryptoId = convertInt(aId);
+  aId = myuuid();
+  const uuidId = convertInt(aId);
   const newMember = {
-    id: crypto.randomUUID(), //or uuid.v4(),
+    id: cryptoId, 
+    // id: uuidId,
     name:req.body.name, 
     email: req.body.email,
     status:'active'
@@ -44,9 +52,9 @@ router.post('/', (req,res)=>{
   }
   // in the case of mongoDb: members.save(newMember)
   // in this cours its only file with array:
-  members.push(newMember);
-  // res.send(req.body);
-  res.json(members);
+   members.push(newMember);
+   // res.send(req.body);
+   res.json(members);
 });//post
 // update member
 router.put(`/:id`, (req,res)=>{
@@ -76,7 +84,6 @@ router.delete(`/:id`, (req,res)=>{
   const idNumber = parseInt(aId);
   console.log(`indexjs;delete; parse(id): ${idNumber} of type ${typeof idNumber}`);
   // members.forEach(obj=>{ console.log(obj);});
-  let mysingle = {};
   const found = members.some(member=> member.id===idNumber);//true or false
   if (found) {
     const myfiltered = members.filter((obj)=> obj.id !== idNumber );

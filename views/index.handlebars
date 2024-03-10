@@ -1,6 +1,21 @@
 <h1 class="text-center mb-3">
      {{title}} 
 </h1>
+<form action="/api/members" method="POST" class="mb-4">
+  <div class="form-group">
+     <label for="name">Name</label>
+     {{!-- we send in request body url encoded data (json)   --}}
+     <input type="text" name="name" class="form-control" >
+  </div>
+  <div class="form-group">
+    <label for="email">email</label>
+    <input type="email" name="email" class="form-control" >
+  </div>
+  </br>
+  <input type="submit" value="submit Query(add Member)" class="btn btn-primary btn-block"
+    {{!-- style="border-radius: 0.3rem;" --}}
+    >
+</form>
 <h4>Members</h4>
 <ul class="list-group">
     {{#each members}}

@@ -27,7 +27,7 @@ app.use(express.urlencoded({ extended: false }));
 app.get('/', (req, res) => {
   // res.render('home'); // or res.render('index')
   res.render('index.handlebars', {
-    title: "a title data from res.render of index.handlebars",
+    title: "a Title (send from res.render)",
     members:members
   });
 });

@@ -11,14 +11,11 @@ const app = express();
 // init middleware
 // app.use(logger);
 
-// handlebars middlewar
+// handlebars middleware
 app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
 app.set('views', './views');
 
-app.get('/', (req, res) => {
-  res.render('home');
-});
 
 //body parser middleware
 app.use(express.json());
@@ -26,6 +23,14 @@ app.use(express.json());
 // and qs library(extended:true)
 app.use(express.urlencoded({ extended: false }));
 
+// home Page route with index.handlebars
+app.get('/', (req, res) => {
+  // res.render('home'); // or res.render('index')
+  res.render('index.handlebars', {
+    title: "a title data from res.render of index.handlebars",
+    members:members
+  });
+});
 
 // creting of route for static serving
 const pubFolder = path.join(myDir(),'public');

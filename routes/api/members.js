@@ -54,7 +54,8 @@ router.post('/', (req,res)=>{
   // in this cours its only file with array:
    members.push(newMember);
    // res.send(req.body);
-   res.json(members);
+  res.json(members);// usually we redirect to the same page
+   //res.redirect('/'); // equal to referrer
 });//post
 // update member
 router.put(`/:id`, (req,res)=>{
